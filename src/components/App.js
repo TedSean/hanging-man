@@ -5,7 +5,9 @@ import axios from 'axios';
 import 'babel-polyfill';
 
 const App = () => {
-    const [data, setData] = useState({words: []});
+    let newString;
+    const [word, setWord] = useState([]);
+    const [data, setData] = useState([]);
     useEffect(() => {
         const runEffect = async () => {
             const result = await axios('src/api/api.js');
@@ -17,11 +19,18 @@ const App = () => {
 
     const randomWord = () => {
         const chosenWord = data[Math.floor(Math.random() * data.length)];
-        console.log(chosenWord.word)
+        replaceLetter(chosenWord.word);
+    }
+
+    const replaceLetter = (string) => {
+        let getString = string;
+        let stringToUnderScore = getString.replace(/[a-z]/gi, '_');
+        setWord(stringToUnderScore);
     }
 
     return (
         <div>
+            <p>{word}</p>
             <button onClick={randomWord}></button>
         </div>
     )
