@@ -5,7 +5,7 @@ import axios from 'axios';
 import 'babel-polyfill';
 
 const App = () => {
-    let newString;
+    let checkLetter = false;
     const [word, setWord] = useState([]);
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -26,10 +26,22 @@ const App = () => {
         let getString = string;
         let stringToUnderScore = getString.replace(/[a-z]/gi, '_');
         setWord(stringToUnderScore);
+        checkLetter = true;
     }
 
+    useEffect(() => {
+        const handleKey = (event) => {
+            console.log(event.keyCode);
+        };
+
+        window.addEventListener('keydown', handleKey);
+        return () => {
+            window.removeEventListener('keydown', handleKey);
+        }
+    }, []);
+
     return (
-        <div>
+        <div onClick={() => keyEvent(event)}>
             <p>{word}</p>
             <button onClick={randomWord}></button>
         </div>
