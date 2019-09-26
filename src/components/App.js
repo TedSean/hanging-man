@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HangingMan } from '../api/api';
+// import { HangingMan } from '../api/api';
 import { fetchButton } from '../actions';
 import axios from 'axios';
 import 'babel-polyfill';
@@ -15,9 +15,14 @@ const App = () => {
         runEffect();
     }, []);
 
+    const randomWord = () => {
+        const chosenWord = data[Math.floor(Math.random() * data.length)];
+        console.log(chosenWord.word)
+    }
+
     return (
         <div>
-            Hello
+            <button onClick={randomWord}></button>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-export const HangingMan = [
+[
     { 
         "id": 1, 
         "word": "bob" 
